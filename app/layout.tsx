@@ -15,7 +15,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="bg-slate-500 mx-4 md:mx-48 xl:mx-96">
+      <body className="bg-slate-500 mx-4">
         <div className="flex justify-center items-center m-10">
           <h1 className='text-2xl'>Options Diagram Project</h1>
         </div>

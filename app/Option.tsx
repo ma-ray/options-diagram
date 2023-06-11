@@ -5,10 +5,12 @@ import { OptionType } from "./OptionType"
 
 type OptionProp = {
   id: string,
-  updateGraph: (option: OptionType) => void
+  updateGraph: (option: OptionType) => void,
+  removeFromGraph: (id: string) => void
 }
 
 export default function Option({id, updateGraph}: OptionProp) {
+  const [visible, setVisible] = useState(false)
   const [position, setPosition] = useState("long")
   const [type, setType] = useState("call")
   const [strike, setStrike] = useState(0)
@@ -17,10 +19,11 @@ export default function Option({id, updateGraph}: OptionProp) {
 
   return (
     <form onSubmit={(e) => {
-      e.preventDefault()
-      updateGraph({id, position, type, strike, premium, contracts})}
-    }>
-      <div className="flex gap-2 justify-between p-4">
+        e.preventDefault()
+        updateGraph({id, position, type, strike, premium, contracts})}
+      }
+    >
+      <div className="flex gap-2 justify-between items-center p-4">
         <select name="position" onChange={(e) => setPosition(e.target.value)}>
           <option value="long">Long</option>
           <option value="short">Short</option>
@@ -42,7 +45,15 @@ export default function Option({id, updateGraph}: OptionProp) {
           <label>Contracts: </label>
           <input type="number" min={0} placeholder="0" name="contracts" className="text-center w-10" onChange={(e) => setContracts(e.target.value ? parseInt(e.target.value) : 0)} />
         </div>
-        <button type="submit" className="bg-blue-500 px-2 align-middle">Graph</button>
+        <button 
+          type="submit" 
+          className="bg-blue-500 px-2 h-10 align-middle"
+        >
+          {visible ? "Hide" : "Show"}
+        </button>
+        <button className="bg-blue-500 h-10 px-2">
+          X
+        </button>
       </div>
     </form>
   )

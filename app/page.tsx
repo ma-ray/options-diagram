@@ -14,20 +14,35 @@ export default function Home() {
     setOptionsList(newList)
   }
 
+  const removeFromGraph = (id: string) => {
+    const newList: OptionType[] = optionsList.filter((x: OptionType) => x.id !== x.id)
+    setOptionsList(newList)
+  }
+
   const generateFunction = (num: number) => (x: number) => (x <= num) ? num : x
 
   return (
-    <main className="flex flex-col items-center justify-between gap-4">
-      <Mafs 
-        viewBox={{ x: [-10, 10], y: [-2, 2] }}
-        width={1000}
-        height={600}
-      >
-        <Coordinates.Cartesian />
-        {optionsList.map(op => <Plot.OfX y={generateFunction(op.contracts)}/>)}
-      </Mafs>
-      <div className="bg-red-500">
-        <Option id={'bob'} updateGraph={updateGraph}/>
+    <main className="flex flex-col items-center gap-4">
+      <div className="h-[500px] w-[900px]">
+        <Mafs 
+          viewBox={{ x: [-10, 10], y: [-2, 2] }}
+        >
+          <Coordinates.Cartesian />
+          {optionsList.map(op => <Plot.OfX y={generateFunction(op.contracts)}/>)}
+        </Mafs>
+      </div>
+      <div className="flex flex-col items-center">
+        <div>
+          <button className="bg-white p-2 mx-100">
+            Add Option
+          </button>
+        </div>
+
+        <Option 
+          id={'bob'} 
+          updateGraph={updateGraph}
+          removeFromGraph={removeFromGraph}
+        />
       </div>
     </main>
   )
