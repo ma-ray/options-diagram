@@ -5,4 +5,5 @@ export type OptionType = {
   strike: number,
   premium: number,
   contracts: number,
+  time: number
 }

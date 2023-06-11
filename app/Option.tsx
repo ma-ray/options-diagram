@@ -5,12 +5,12 @@ import { OptionType } from "./OptionType"
 
 type OptionProp = {
   id: string,
+  time: number,
   updateGraph: (option: OptionType) => void,
   removeFromGraph: (id: string) => void
 }
 
-export default function Option({id, updateGraph}: OptionProp) {
-  const [visible, setVisible] = useState(false)
+export default function Option({id, updateGraph, removeFromGraph, time}: OptionProp) {
   const [position, setPosition] = useState("long")
   const [type, setType] = useState("call")
   const [strike, setStrike] = useState(0)
@@ -20,11 +20,13 @@ export default function Option({id, updateGraph}: OptionProp) {
   return (
     <form onSubmit={(e) => {
         e.preventDefault()
-        updateGraph({id, position, type, strike, premium, contracts})}
+        updateGraph({id, position, type, strike, premium, contracts, time})}
       }
     >
-      <div className="flex gap-2 justify-between items-center p-4">
-        <select name="position" onChange={(e) => setPosition(e.target.value)}>
+      <div className="flex gap-2 justify-between items-center p-4 bg-white">
+        <select name="position" 
+          onChange={(e) => setPosition(e.target.value)} 
+        >
           <option value="long">Long</option>
           <option value="short">Short</option>
         </select>
@@ -49,7 +51,7 @@ export default function Option({id, updateGraph}: OptionProp) {
           type="submit" 
           className="bg-blue-500 px-2 h-10 align-middle"
         >
-          {visible ? "Hide" : "Show"}
+          Plot
         </button>
         <button className="bg-blue-500 h-10 px-2">
           X
