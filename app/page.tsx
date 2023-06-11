@@ -27,7 +27,7 @@ export default function Home() {
         {optionsList.map(op => <Plot.OfX y={generateFunction(op.contracts)}/>)}
       </Mafs>
       <div className="bg-red-500">
-        <Option id={crypto.randomUUID()} updateGraph={updateGraph}/>
+        <Option id={'bob'} updateGraph={updateGraph}/>
       </div>
     </main>
   )

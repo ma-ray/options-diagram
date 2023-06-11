@@ -31,15 +31,16 @@ export default function Option({id, updateGraph}: OptionProp) {
         </select>
         <div>
           <label>Strike Price: </label>
-          <input type="number" name="strikePrice" className="w-10" onChange={(e) => setStrike(parseInt(e.target.value))} />
+          <input type="number" min={0} placeholder="0" name="strikePrice" className="text-center w-10" onChange={(e) => setStrike(e.target.value ? parseInt(e.target.value) : 0)} />
         </div>
         <div>
           <label>Option Premium: </label>
-          <input type="number" name="optionPremium" className="w-10" onChange={(e) => setPremium(parseInt(e.target.value))} />
+          <input type="number" min={0} placeholder="0" name="optionPremium" className="text-center w-10" onChange={(e) => setPremium(e.target.value ? parseInt(e.target.value) : 0)}
+          />
         </div>
         <div>
           <label>Contracts: </label>
-          <input type="number" name="contracts" className="w-10" onChange={(e) => setContracts(parseInt(e.target.value))} />
+          <input type="number" min={0} placeholder="0" name="contracts" className="text-center w-10" onChange={(e) => setContracts(e.target.value ? parseInt(e.target.value) : 0)} />
         </div>
         <button type="submit" className="bg-blue-500 px-2 align-middle">Graph</button>
       </div>
