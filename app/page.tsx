@@ -1,6 +1,6 @@
 'use client'
 
-import { Mafs, Coordinates, Plot } from "mafs"
+import OptionChart from "./OptionChart"
 import { useState } from "react"
 import Option from "./Option"
 import { OptionType } from "./OptionType"
@@ -28,29 +28,21 @@ export default function Home() {
       strike: 0,
       premium: 0,
       contracts: 0,
-      time: Date.now()
+      time: Date.now(),
+      data: []
     })
     setOptionsList(options)
   }
 
-  const generateFunction = (num: number) => (x: number) => (x <= num) ? num : x
-
   return (console.log(optionsList),
     <main className="flex flex-col items-center gap-4">
-      <div className="h-[500px] w-[900px]">
-        <Mafs 
-          viewBox={{ x: [-10, 10], y: [-2, 2] }}
-        >
-          <Coordinates.Cartesian />
-          {optionsList.map(op => <Plot.OfX key={op.id} y={generateFunction(op.contracts)}/>)}
-        </Mafs>
+      <div id="test" className="h-[500px] w-[900px] bg-white">
+        <OptionChart optionsList={optionsList} />
       </div>
       <div className="flex flex-col items-center gap-4">
-        <div>
-          <button className="bg-white p-2 mx-100" onClick={() => {addOption()}}>
-            Add Option
-          </button>
-        </div>
+        <button className="bg-white p-2 mx-100" onClick={() => {addOption()}}>
+          Add Option
+        </button>
         {optionsList
           .sort((a, b) => (a.time < b.time) ? 1 : -1)
           .map(op => <Option key={op.id} id={op.id} time={op.time} updateGraph={updateGraph} removeFromGraph={removeFromGraph}/>)}

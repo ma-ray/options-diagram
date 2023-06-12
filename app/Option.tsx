@@ -2,6 +2,7 @@
 
 import {useState} from "react"
 import { OptionType } from "./OptionType"
+import generateData from "./generateData"
 
 type OptionProp = {
   id: string,
@@ -20,7 +21,8 @@ export default function Option({id, updateGraph, removeFromGraph, time}: OptionP
   return (
     <form onSubmit={(e) => {
         e.preventDefault()
-        updateGraph({id, position, type, strike, premium, contracts, time})}
+        const data = generateData(position, type, strike, premium, contracts)
+        updateGraph({id, position, type, strike, premium, contracts, time, data})}
       }
     >
       <div className="flex gap-2 justify-between items-center p-4 bg-white">
