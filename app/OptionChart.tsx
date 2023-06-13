@@ -14,7 +14,7 @@ export default function OptionChart({optionsList}: OptionChartProp ) {
     showSymbol: false,
     clip: true,
     data: op.data,
-    lineStyle: {color: '#d5ceeb'}
+    lineStyle: {color: op.colour}
   }));
 
   const option = {

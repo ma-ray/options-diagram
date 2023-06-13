@@ -29,6 +29,7 @@ export default function Home() {
       premium: 0,
       contracts: 0,
       time: Date.now(),
+      colour: '#000000',
       data: []
     })
     setOptionsList(options)
@@ -36,7 +37,7 @@ export default function Home() {
 
   return (console.log(optionsList),
     <main className="flex flex-col items-center gap-4">
-      <div id="test" className="h-[500px] w-[900px] bg-white">
+      <div className="h-[500px] w-[900px] bg-white">
         <OptionChart optionsList={optionsList} />
       </div>
       <div className="flex flex-col items-center gap-4">

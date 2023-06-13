@@ -17,12 +17,13 @@ export default function Option({id, updateGraph, removeFromGraph, time}: OptionP
   const [strike, setStrike] = useState(0)
   const [premium, setPremium] = useState(0)
   const [contracts, setContracts] = useState(0)
+  const [colour, setColour] = useState('#000000')
 
   return (
     <form onSubmit={(e) => {
         e.preventDefault()
         const data = generateData(position, type, strike, premium, contracts)
-        updateGraph({id, position, type, strike, premium, contracts, time, data})}
+        updateGraph({id, position, type, strike, premium, contracts, time, colour, data})}
       }
     >
       <div className="flex gap-2 justify-between items-center p-4 bg-white">
@@ -49,13 +50,21 @@ export default function Option({id, updateGraph, removeFromGraph, time}: OptionP
           <label>Contracts: </label>
           <input type="number" min={0} placeholder="0" name="contracts" className="text-center w-10" onChange={(e) => setContracts(e.target.value ? parseInt(e.target.value) : 0)} />
         </div>
+        <div>
+          <input type="color" className="w-[24px] bg-inherit"
+            onChange={(e) => {setColour(e.target.value)}}
+          />
+        </div>
         <button 
           type="submit" 
           className="bg-blue-500 px-2 h-10 align-middle"
         >
           Plot
         </button>
-        <button className="bg-blue-500 h-10 px-2">
+        <button 
+          className="bg-blue-500 h-10 px-2"
+          onClick={() => {removeFromGraph(id)}}  
+        >
           X
         </button>
       </div>
