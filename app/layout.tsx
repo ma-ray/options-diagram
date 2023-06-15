@@ -15,10 +15,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="bg-slate-500">
-        <div className="flex justify-center items-center m-10">
-          <h1 className='text-2xl'>Options Diagram Project</h1>
-        </div>
+      <body className="overflow-hidden">
         {children}
       </body>
     </html>

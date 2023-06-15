@@ -25,8 +25,9 @@ export default function Option({id, updateGraph, removeFromGraph, time}: OptionP
         const data = generateData(position, type, strike, premium, contracts)
         updateGraph({id, position, type, strike, premium, contracts, time, colour, data})}
       }
+      className="w-full"
     >
-      <div className="flex gap-2 justify-between items-center p-4 bg-white">
+      <div className="flex justify-between items-center p-3 bg-white border-b-2 border-black">
         <select name="position" 
           onChange={(e) => setPosition(e.target.value)} 
         >

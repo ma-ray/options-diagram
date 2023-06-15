@@ -36,17 +36,22 @@ export default function Home() {
   }
 
   return (
-    <main className="flex flex-col items-center gap-4">
-      <div className="h-[500px] w-[900px] bg-white">
-        <OptionChart optionsList={optionsList} />
-      </div>
-      <div className="flex flex-col items-center gap-4">
-        <button className="bg-white p-2 mx-100" onClick={() => {addOption()}}>
-          Add Option
-        </button>
+    <main className="flex items-center w-full h-full">
+      <div className="flex flex-col items-center h-screen w-1/3">
+        <div className="w-full border-b-2 border-black">
+          <button className="bg-white p-2" onClick={() => {addOption()}}>
+            Add Option
+          </button>
+          {/* <button className="bg-white p-2 mx-100">
+            Plot
+          </button> */}
+        </div>
         {optionsList
           .sort((a, b) => (a.time < b.time) ? 1 : -1)
           .map(op => <Option key={op.id} id={op.id} time={op.time} updateGraph={updateGraph} removeFromGraph={removeFromGraph}/>)}
+      </div>
+      <div className="bg-white flex-1 h-screen">
+        <OptionChart optionsList={optionsList} />
       </div>
     </main>
   )
