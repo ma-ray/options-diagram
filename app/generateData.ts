@@ -18,18 +18,14 @@ export default function generateData(position: string, type: string, strike: num
   let func
   if (position === "long") {
     if (type === "call") {
-      console.log('long call')
       func = generateLongCall
     } else {
-      console.log('long put')
       func = generateLongPut
     }
   } else {
     if (type === "call") {
-      console.log('short call')
       func = generateShortCall
     } else {
-      console.log('short put')
       func = generateShortPut
     }
   }

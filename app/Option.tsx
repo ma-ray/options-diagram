@@ -17,7 +17,7 @@ export default function Option({id, updateGraph, removeFromGraph, time}: OptionP
   const [strike, setStrike] = useState(0)
   const [premium, setPremium] = useState(0)
   const [contracts, setContracts] = useState(0)
-  const [colour, setColour] = useState('#000000')
+  const [colour, setColour] = useState('#ffffff')
 
   return (
     <form onSubmit={(e) => {
@@ -28,40 +28,79 @@ export default function Option({id, updateGraph, removeFromGraph, time}: OptionP
       className="w-full"
     >
       <div className="flex justify-between items-center p-3 bg-white border-b-2 border-black">
-        <select name="position" 
-          onChange={(e) => setPosition(e.target.value)} 
+        <select 
+          name="position" 
+          onChange={(e) => {
+            setPosition(e.target.value)
+            const data = generateData(position, type, strike, premium, contracts)
+            updateGraph({id, position, type, strike, premium, contracts, time, colour, data})
+          }} 
         >
           <option value="long">Long</option>
           <option value="short">Short</option>
         </select>
-        <select name="type" onChange={(e) => setType(e.target.value)}>
+        <select 
+          name="type" 
+          onChange={(e) => {
+            setType(e.target.value)
+            const data = generateData(position, type, strike, premium, contracts)
+            updateGraph({id, position, type, strike, premium, contracts, time, colour, data})
+        }}>
           <option value="call">Call</option>
           <option value="put">Put</option>
         </select>
         <div>
           <label>Strike Price: </label>
-          <input type="number" min={0} placeholder="0" name="strikePrice" className="text-center w-10" onChange={(e) => setStrike(e.target.value ? parseInt(e.target.value) : 0)} />
+          <input 
+            type="number" min={0} 
+            name="strikePrice" 
+            className="text-center w-10" 
+            onChange={(e) => {
+              setStrike(e.target.value ? parseInt(e.target.value) : 0)
+              const data = generateData(position, type, strike, premium, contracts)
+              updateGraph({id, position, type, strike, premium, contracts, time, colour, data})
+            }} 
+            />
         </div>
         <div>
           <label>Option Premium: </label>
-          <input type="number" min={0} placeholder="0" name="optionPremium" className="text-center w-10" onChange={(e) => setPremium(e.target.value ? parseInt(e.target.value) : 0)}
+          <input 
+            type="number" 
+            min={0} 
+            name="optionPremium" 
+            className="text-center w-10 border-black" 
+            onChange={(e) => {
+              setPremium(e.target.value ? parseInt(e.target.value) : 0)
+              const data = generateData(position, type, strike, premium, contracts)
+              updateGraph({id, position, type, strike, premium, contracts, time, colour, data})
+            }}
           />
         </div>
         <div>
           <label>Contracts: </label>
-          <input type="number" min={0} placeholder="0" name="contracts" className="text-center w-10" onChange={(e) => setContracts(e.target.value ? parseInt(e.target.value) : 0)} />
+          <input 
+            type="number" 
+            min={0} 
+            name="contracts" 
+            className="text-center w-10" 
+            onChange={(e) => {
+              setContracts(e.target.value ? parseInt(e.target.value) : 0)
+              const data = generateData(position, type, strike, premium, contracts)
+              updateGraph({id, position, type, strike, premium, contracts, time, colour, data})
+            }} />
         </div>
         <div>
-          <input type="color" className="w-[24px] bg-inherit"
-            onChange={(e) => {setColour(e.target.value)}}
-          />
+          <input 
+            type="color" 
+            value="#ffffff"
+            className="w-[24px] bg-inherit"
+            onChange={(e) => {
+              setColour(e.target.value)
+              console.log('change to ', e.target.value)
+              const data = generateData(position, type, strike, premium, contracts)
+              updateGraph({id, position, type, strike, premium, contracts, time, colour, data})
+            }} />
         </div>
-        <button 
-          type="submit" 
-          className="bg-blue-500 p-2 h-6 flex items-center justify-center"
-        >
-          Plot
-        </button>
         <button 
           className="bg-red-500 w-6 h-6 align-middle"
           onClick={() => {removeFromGraph(id)}}  
