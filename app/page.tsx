@@ -35,7 +35,7 @@ export default function Home() {
     setOptionsList(options)
   }
 
-  return (console.log(optionsList),
+  return (
     <main className="flex flex-col items-center gap-4">
       <div className="h-[500px] w-[900px] bg-white">
         <OptionChart optionsList={optionsList} />

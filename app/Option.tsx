@@ -57,12 +57,12 @@ export default function Option({id, updateGraph, removeFromGraph, time}: OptionP
         </div>
         <button 
           type="submit" 
-          className="bg-blue-500 px-2 h-10 align-middle"
+          className="bg-blue-500 p-2 h-6 flex items-center justify-center"
         >
           Plot
         </button>
         <button 
-          className="bg-blue-500 h-10 px-2"
+          className="bg-red-500 w-6 h-6 align-middle"
           onClick={() => {removeFromGraph(id)}}  
         >
           X
