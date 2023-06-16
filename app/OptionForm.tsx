@@ -1,3 +1,5 @@
+'use client'
+
 import { useState, useEffect } from "react";
 import { OptionType } from "./OptionType";
 import Option from "./Option";
@@ -42,13 +44,8 @@ export default function OptionForm({setOptions}: OptionFormProp) {
   return (
     <div className="flex flex-col items-center h-screen w-1/3 overflow-auto">
     <div className="w-full border-b-2 border-black">
-      <button className="bg-white p-2 font-semibold hover:bg-slate-200" onClick={() => {addOption()}}>
+      <button className="bg-white p-2 font-semibold hover:bg-slate-200 border-black border-r-2" onClick={() => {addOption()}}>
         Add Option
-      </button>
-      <button className="bg-white p-2 mx-100"
-        onClick={() => {setOptions(optionsList)}}
-      >
-        Plot
       </button>
     </div>
     {optionsList

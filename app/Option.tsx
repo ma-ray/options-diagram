@@ -54,7 +54,7 @@ export default function Option({id, updateGraph, removeFromGraph, time}: OptionP
           <input 
             type="number" min={0} 
             name="strikePrice" 
-            className="text-center w-10" 
+            className="text-center w-10 border-2 border-gray-400 hover:border-black rounded" 
             onChange={(e) => {
               setStrike(e.target.value ? parseInt(e.target.value) : 0)
               const data = generateData(position, type, strike, premium, contracts)
@@ -68,7 +68,7 @@ export default function Option({id, updateGraph, removeFromGraph, time}: OptionP
             type="number" 
             min={0} 
             name="optionPremium" 
-            className="text-center w-10 border-black" 
+            className="text-center w-10 border-2 border-gray-400 hover:border-black rounded" 
             onChange={(e) => {
               setPremium(e.target.value ? parseInt(e.target.value) : 0)
               const data = generateData(position, type, strike, premium, contracts)
@@ -82,7 +82,7 @@ export default function Option({id, updateGraph, removeFromGraph, time}: OptionP
             type="number" 
             min={0} 
             name="contracts" 
-            className="text-center w-10" 
+            className="text-center w-10 border-2 border-gray-400 hover:border-black rounded" 
             onChange={(e) => {
               setContracts(e.target.value ? parseInt(e.target.value) : 0)
               const data = generateData(position, type, strike, premium, contracts)
@@ -92,17 +92,16 @@ export default function Option({id, updateGraph, removeFromGraph, time}: OptionP
         <div>
           <input 
             type="color" 
-            value="#ffffff"
+            value={colour}
             className="w-[24px] bg-inherit"
             onChange={(e) => {
               setColour(e.target.value)
-              console.log('change to ', e.target.value)
               const data = generateData(position, type, strike, premium, contracts)
               updateGraph({id, position, type, strike, premium, contracts, time, colour, data})
             }} />
         </div>
         <button 
-          className="bg-red-500 w-6 h-6 align-middle"
+          className="bg-red-500 hover:bg-red-400 w-6 h-6 align-middle border border-black"
           onClick={() => {removeFromGraph(id)}}  
         >
           X
