@@ -1,22 +1,13 @@
 'use client'
 
 import ReactECharts from 'echarts-for-react';
-import { OptionType } from './OptionType';
 
 type OptionChartProp = {
-  optionsList: OptionType[]
+  resultList: number[][]
   darkMode: boolean
 }
 
-export default function OptionChart({optionsList, darkMode}: OptionChartProp ) {
-
-  const series = optionsList.map(op => ({
-    type: 'line',
-    showSymbol: false,
-    clip: true,
-    data: op.data,
-    lineStyle: {color: op.colour}
-  }));
+export default function OptionChart({resultList, darkMode}: OptionChartProp ) {
 
   const option = {
     animation: false,
@@ -66,7 +57,13 @@ export default function OptionChart({optionsList, darkMode}: OptionChartProp ) {
         endValue: 100
       }
     ],
-    series
+    series: {
+      type: 'line',
+      showSymbol: false,
+      clip: true,
+      data: resultList,
+      lineStyle: {color: '#ffffff'}
+    }
   }
 
   return (

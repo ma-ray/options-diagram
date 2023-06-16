@@ -4,8 +4,7 @@ import OptionChart from "./OptionChart"
 import { useState } from "react"
 import { OptionType } from "./OptionType"
 import OptionForm from "./OptionForm"
-
-type OptionDict = {[id: string] : OptionType}
+import { generateResult } from "./generateData"
 
 export default function Home() {
   const [optionsList, setOptionsList] = useState<OptionType[]>([])
@@ -36,7 +35,7 @@ export default function Home() {
       premium: 0,
       contracts: 0,
       time: Date.now(),
-      colour: '#000000',
+      colour: '#ffffff',
       data: []
     })
     setOptionsList(options)
@@ -46,7 +45,7 @@ export default function Home() {
     <main className="flex items-center w-full h-full">
       <OptionForm optionsList={optionsList} addOption={addOption} updateGraph={updateGraph} removeFromGraph={removeFromGraph} darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
       <div className="bg-white flex-1 h-screen">
-        <OptionChart optionsList={optionsList} darkMode={darkMode}/>
+        <OptionChart resultList={generateResult(optionsList.map(op => op.data))} darkMode={darkMode}/>
       </div>
     </main>
   )
