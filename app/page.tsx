@@ -35,7 +35,7 @@ export default function Home() {
       premium: 0,
       contracts: 0,
       time: Date.now(),
-      data: []
+      data: Array(1000/0.1).fill(0)
     })
     setOptionsList(options)
   }
