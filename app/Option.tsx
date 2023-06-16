@@ -35,7 +35,10 @@ export default function Option({currentOptionData, updateGraph, removeFromGraph,
         newData.colour = e.target.value
         break;
     }
-    newData.data = generateData(newData.position, newData.type, newData.strike, newData.premium, newData.contracts)
+
+    if (e.target.name !== "color") {
+      newData.data = generateData(newData.position, newData.type, newData.strike, newData.premium, newData.contracts)
+    }
     updateGraph(newData)
   }
 
@@ -83,12 +86,15 @@ export default function Option({currentOptionData, updateGraph, removeFromGraph,
           onChange={handleChange} />
       </div>
       <div>
-        <input 
-          type="color" 
-          name="color"
-          value={currentOptionData.colour}
-          className="w-[24px] bg-inherit"
-          onChange={handleChange} />
+        <select name="color" onChange={handleChange}>
+          <option value="#000000">Black</option>
+          <option value="#ffffff">White</option>
+          <option value="#ff0000">Red</option>
+          <option value="#0000ff">Blue</option>
+          <option value="#008000">Green</option>
+          <option value="#ffff00">Yellow</option>
+          <option value="#ff8c00">Orange</option>
+        </select>
       </div>
       <button 
         className="bg-red-500 hover:bg-red-400 w-6 h-6 align-middle border border-black"

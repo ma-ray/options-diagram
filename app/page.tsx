@@ -36,7 +36,7 @@ export default function Home() {
       premium: 0,
       contracts: 0,
       time: Date.now(),
-      colour: darkMode ? '#ffffff' : '#000000',
+      colour: '#000000',
       data: []
     })
     setOptionsList(options)
