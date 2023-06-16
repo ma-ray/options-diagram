@@ -44,10 +44,12 @@ export default function OptionForm({setOptions, darkMode, toggleDarkMode}: Optio
   }
 
   return (
-    <div className="flex flex-col items-center h-screen w-1/3 overflow-auto">
+    <div className="flex flex-col items-center h-screen w-1/3 overflow-auto border-black border-r-2">
     <div className="flex w-full border-b-2 border-black">
-      <div className="flex-1 text-xl font-bold p-1">Options Diagram</div>
-      <button onClick={() => {toggleDarkMode()}}>
+      <div className="flex-1 text-xl font-bold p-1">
+        Options Diagram
+      </div>
+      <button className="hover:bg-slate-200 border-l-2 px-2 text-center border-black" onClick={() => {toggleDarkMode()}}>
         {darkMode ? '☀️' : '🌙'}
       </button>
       <button className="bg-white p-2 font-semibold hover:bg-slate-200 border-black border-l-2" onClick={() => {addOption()}}>
