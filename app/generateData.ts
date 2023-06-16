@@ -32,7 +32,7 @@ export function generateData(position: string, type: string, strike: number, pre
 
   const data: number[] = []
 
-  for (let i = -1000; i < 1000; i += 0.1) {
+  for (let i = 0; i < 1000; i += 0.1) {
     data.push(func(i, premium, strike) * contracts)
   }
 
@@ -45,7 +45,7 @@ export function generateResult(dataLists: number[][]){
   const result = [];
 
   let idx = 0
-  for (let i = -1000; i < 1000; i += 0.1) {
+  for (let i = 0; i < 1000; i += 0.1) {
     let sum = 0;
     for (let j = 0; j < numLists; j++) {
       sum += dataLists[j][idx];

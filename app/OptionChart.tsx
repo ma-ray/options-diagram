@@ -19,7 +19,7 @@ export default function OptionChart({resultList, darkMode}: OptionChartProp ) {
     },
     xAxis: {
       name: 'x',
-      min: -1000,
+      min: 0,
       max: 1000,
       minorTick: {
         show: true
