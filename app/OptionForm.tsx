@@ -6,9 +6,11 @@ import Option from "./Option";
 
 type OptionFormProp = {
   setOptions: (optionsArray: OptionType[]) => void
+  darkMode: boolean
+  toggleDarkMode: () => void
 }
 
-export default function OptionForm({setOptions}: OptionFormProp) {
+export default function OptionForm({setOptions, darkMode, toggleDarkMode}: OptionFormProp) {
   const [optionsList, setOptionsList] = useState<OptionType[]>([])
 
   useEffect(() => {
@@ -35,7 +37,7 @@ export default function OptionForm({setOptions}: OptionFormProp) {
       premium: 0,
       contracts: 0,
       time: Date.now(),
-      colour: "#FFFFFF",
+      colour: darkMode ? '#ffffff' : '#000000',
       data: []
     })
     setOptionsList(options)
@@ -43,8 +45,12 @@ export default function OptionForm({setOptions}: OptionFormProp) {
 
   return (
     <div className="flex flex-col items-center h-screen w-1/3 overflow-auto">
-    <div className="w-full border-b-2 border-black">
-      <button className="bg-white p-2 font-semibold hover:bg-slate-200 border-black border-r-2" onClick={() => {addOption()}}>
+    <div className="flex w-full border-b-2 border-black">
+      <div className="flex-1 text-xl font-bold p-1">Options Diagram</div>
+      <button onClick={() => {toggleDarkMode()}}>
+        {darkMode ? '☀️' : '🌙'}
+      </button>
+      <button className="bg-white p-2 font-semibold hover:bg-slate-200 border-black border-l-2" onClick={() => {addOption()}}>
         Add Option
       </button>
     </div>
@@ -57,6 +63,7 @@ export default function OptionForm({setOptions}: OptionFormProp) {
           time={op.time} 
           updateGraph={updateGraph} 
           removeFromGraph={removeFromGraph}
+          darkMode={darkMode}
         />)}
   </div>
   )

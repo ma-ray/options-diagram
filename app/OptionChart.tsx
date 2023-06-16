@@ -5,9 +5,10 @@ import { OptionType } from './OptionType';
 
 type OptionChartProp = {
   optionsList: OptionType[]
+  darkMode: boolean
 }
 
-export default function OptionChart({optionsList}: OptionChartProp ) {
+export default function OptionChart({optionsList, darkMode}: OptionChartProp ) {
 
   const series = optionsList.map(op => ({
     type: 'line',
@@ -75,7 +76,7 @@ export default function OptionChart({optionsList}: OptionChartProp ) {
         width: '100%',
       }} 
       option={option}
-      theme={'dark'}
+      theme={darkMode ? 'dark' : 'light'}
     />
   )
 }

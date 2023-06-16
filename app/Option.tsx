@@ -8,16 +8,17 @@ type OptionProp = {
   id: string,
   time: number,
   updateGraph: (option: OptionType) => void,
-  removeFromGraph: (id: string) => void
+  removeFromGraph: (id: string) => void,
+  darkMode: boolean
 }
 
-export default function Option({id, updateGraph, removeFromGraph, time}: OptionProp) {
+export default function Option({id, updateGraph, removeFromGraph, time, darkMode}: OptionProp) {
   const [position, setPosition] = useState("long")
   const [type, setType] = useState("call")
   const [strike, setStrike] = useState(0)
   const [premium, setPremium] = useState(0)
   const [contracts, setContracts] = useState(0)
-  const [colour, setColour] = useState('#ffffff')
+  const [colour, setColour] = useState(darkMode ? '#ffffff' : '#000000')
 
   return (
     <form onSubmit={(e) => {

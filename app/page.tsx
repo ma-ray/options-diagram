@@ -7,6 +7,11 @@ import OptionForm from "./OptionForm"
 
 export default function Home() {
   const [optionsList, setOptionsList] = useState<OptionType[]>([])
+  const [darkMode, setDarkMode] = useState(true)
+
+  const toggleDarkMode = () => {
+    setDarkMode(!darkMode)
+  }
 
   const updateOption = (optionsArray: OptionType[]) => {
     setOptionsList(optionsArray)
@@ -14,9 +19,9 @@ export default function Home() {
 
   return (
     <main className="flex items-center w-full h-full">
-      <OptionForm setOptions={updateOption} />
+      <OptionForm setOptions={updateOption} darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
       <div className="bg-white flex-1 h-screen">
-        <OptionChart optionsList={optionsList} />
+        <OptionChart optionsList={optionsList} darkMode={darkMode}/>
       </div>
     </main>
   )
