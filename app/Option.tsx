@@ -1,6 +1,6 @@
 'use client'
 
-import {useState} from "react"
+import {ChangeEvent, useState} from "react"
 import { OptionType } from "./OptionType"
 import generateData from "./generateData"
 
@@ -20,33 +20,45 @@ export default function Option({id, updateGraph, removeFromGraph, time, darkMode
   const [contracts, setContracts] = useState(0)
   const [colour, setColour] = useState(darkMode ? '#ffffff' : '#000000')
 
+  const handleChange = (e: ChangeEvent<HTMLSelectElement | HTMLInputElement>) => {
+    switch (e.target.name) {
+      case "position":
+        setPosition(e.target.value)
+        break;
+      case "type":
+        setType(e.target.value)
+        break;
+      case "strikePrice":
+        setStrike(e.target.value ? parseInt(e.target.value) : 0)
+        break;
+      case "optionPremium":
+        setPremium(e.target.value ? parseInt(e.target.value) : 0)
+        break;
+      case "contracts":
+        setContracts(e.target.value ? parseInt(e.target.value) : 0)
+        break;
+      case "color":
+        setColour(e.target.value)
+        break;
+    }
+
+    const data = generateData(position, type, strike, premium, contracts)
+    updateGraph({id, position, type, strike, premium, contracts, time, colour, data})
+  }
+
   return (
-    <form onSubmit={(e) => {
-        e.preventDefault()
-        const data = generateData(position, type, strike, premium, contracts)
-        updateGraph({id, position, type, strike, premium, contracts, time, colour, data})}
-      }
-      className="w-full"
-    >
+    <form className="w-full">
       <div className="flex justify-between items-center p-3 bg-white border-b-2 border-black">
         <select 
           name="position" 
-          onChange={(e) => {
-            setPosition(e.target.value)
-            const data = generateData(position, type, strike, premium, contracts)
-            updateGraph({id, position, type, strike, premium, contracts, time, colour, data})
-          }} 
+          onChange={handleChange} 
         >
           <option value="long">Long</option>
           <option value="short">Short</option>
         </select>
         <select 
           name="type" 
-          onChange={(e) => {
-            setType(e.target.value)
-            const data = generateData(position, type, strike, premium, contracts)
-            updateGraph({id, position, type, strike, premium, contracts, time, colour, data})
-        }}>
+          onChange={handleChange}>
           <option value="call">Call</option>
           <option value="put">Put</option>
         </select>
@@ -56,11 +68,7 @@ export default function Option({id, updateGraph, removeFromGraph, time, darkMode
             type="number" min={0} 
             name="strikePrice" 
             className="text-center w-10 border-2 border-gray-400 hover:border-black rounded" 
-            onChange={(e) => {
-              setStrike(e.target.value ? parseInt(e.target.value) : 0)
-              const data = generateData(position, type, strike, premium, contracts)
-              updateGraph({id, position, type, strike, premium, contracts, time, colour, data})
-            }} 
+            onChange={handleChange} 
             />
         </div>
         <div>
@@ -70,11 +78,7 @@ export default function Option({id, updateGraph, removeFromGraph, time, darkMode
             min={0} 
             name="optionPremium" 
             className="text-center w-10 border-2 border-gray-400 hover:border-black rounded" 
-            onChange={(e) => {
-              setPremium(e.target.value ? parseInt(e.target.value) : 0)
-              const data = generateData(position, type, strike, premium, contracts)
-              updateGraph({id, position, type, strike, premium, contracts, time, colour, data})
-            }}
+            onChange={handleChange}
           />
         </div>
         <div>
@@ -84,22 +88,15 @@ export default function Option({id, updateGraph, removeFromGraph, time, darkMode
             min={0} 
             name="contracts" 
             className="text-center w-10 border-2 border-gray-400 hover:border-black rounded" 
-            onChange={(e) => {
-              setContracts(e.target.value ? parseInt(e.target.value) : 0)
-              const data = generateData(position, type, strike, premium, contracts)
-              updateGraph({id, position, type, strike, premium, contracts, time, colour, data})
-            }} />
+            onChange={handleChange} />
         </div>
         <div>
           <input 
             type="color" 
+            name="color"
             value={colour}
             className="w-[24px] bg-inherit"
-            onChange={(e) => {
-              setColour(e.target.value)
-              const data = generateData(position, type, strike, premium, contracts)
-              updateGraph({id, position, type, strike, premium, contracts, time, colour, data})
-            }} />
+            onChange={handleChange} />
         </div>
         <button 
           className="bg-red-500 hover:bg-red-400 w-6 h-6 align-middle border border-black"
