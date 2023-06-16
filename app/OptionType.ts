@@ -6,6 +6,5 @@ export type OptionType = {
   premium: number,
   contracts: number,
   time: number,
-  colour: string,
   data: number[]
 }

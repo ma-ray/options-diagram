@@ -31,9 +31,6 @@ export default function Option({currentOptionData, updateGraph, removeFromGraph,
       case "contracts":
         newData.contracts = e.target.value ? parseInt(e.target.value) : 0
         break;
-      case "color":
-        newData.colour = e.target.value
-        break;
     }
 
     if (e.target.name !== "color") {
@@ -85,17 +82,6 @@ export default function Option({currentOptionData, updateGraph, removeFromGraph,
           className="text-center w-10 border-2 border-gray-400 hover:border-black rounded" 
           onChange={handleChange} />
       </div>
-      {/* <div>
-        <select name="color" onChange={handleChange}>
-          <option value="#000000">Black</option>
-          <option value="#ffffff">White</option>
-          <option value="#ff0000">Red</option>
-          <option value="#0000ff">Blue</option>
-          <option value="#008000">Green</option>
-          <option value="#ffff00">Yellow</option>
-          <option value="#ff8c00">Orange</option>
-        </select>
-      </div> */}
       <button 
         className="bg-red-500 hover:bg-red-400 w-6 h-6 align-middle border border-black"
         onClick={() => {removeFromGraph(currentOptionData.id)}}  

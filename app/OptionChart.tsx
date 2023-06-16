@@ -62,7 +62,7 @@ export default function OptionChart({resultList, darkMode}: OptionChartProp ) {
       showSymbol: false,
       clip: true,
       data: resultList,
-      lineStyle: {color: '#ffffff'}
+      lineStyle: {color: darkMode ? '#ffffff' : '#000000'}
     }
   }
 
