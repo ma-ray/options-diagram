@@ -5,6 +5,8 @@ import { useState } from "react"
 import { OptionType } from "./OptionType"
 import OptionForm from "./OptionForm"
 
+type OptionDict = {[id: string] : OptionType}
+
 export default function Home() {
   const [optionsList, setOptionsList] = useState<OptionType[]>([])
   const [darkMode, setDarkMode] = useState(true)
@@ -13,13 +15,36 @@ export default function Home() {
     setDarkMode(!darkMode)
   }
 
-  const updateOption = (optionsArray: OptionType[]) => {
-    setOptionsList(optionsArray)
+  const updateGraph = (option: OptionType) => {
+    const newList = optionsList.filter(x => x.id !== option.id)
+    newList.push(option)
+    setOptionsList(newList)
+  }
+
+  const removeFromGraph = (id: string) => {
+    const newList = optionsList.filter(x => x.id !== id)
+    setOptionsList(newList)
+  }
+
+  const addOption = () => {
+    const options = structuredClone(optionsList)
+    options.push({
+      id: crypto.randomUUID(),
+      position: 'long',
+      type: 'call',
+      strike: 0,
+      premium: 0,
+      contracts: 0,
+      time: Date.now(),
+      colour: darkMode ? '#ffffff' : '#000000',
+      data: []
+    })
+    setOptionsList(options)
   }
 
   return (
     <main className="flex items-center w-full h-full">
-      <OptionForm setOptions={updateOption} darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
+      <OptionForm optionsList={optionsList} addOption={addOption} updateGraph={updateGraph} removeFromGraph={removeFromGraph} darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
       <div className="bg-white flex-1 h-screen">
         <OptionChart optionsList={optionsList} darkMode={darkMode}/>
       </div>

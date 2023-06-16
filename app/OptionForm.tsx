@@ -1,47 +1,18 @@
 'use client'
 
-import { useState, useEffect } from "react";
 import { OptionType } from "./OptionType";
 import Option from "./Option";
 
 type OptionFormProp = {
-  setOptions: (optionsArray: OptionType[]) => void
+  optionsList: OptionType[]
+  addOption: () => void
+  updateGraph: (option: OptionType) => void
+  removeFromGraph: (id: string) => void
   darkMode: boolean
   toggleDarkMode: () => void
 }
 
-export default function OptionForm({setOptions, darkMode, toggleDarkMode}: OptionFormProp) {
-  const [optionsList, setOptionsList] = useState<OptionType[]>([])
-
-  useEffect(() => {
-    setOptions(optionsList)}, [optionsList])
-
-  const updateGraph = (option: OptionType) => {
-    const newList: OptionType[] = optionsList.filter((x: OptionType) => x.id !== option.id)
-    newList.push(option)
-    setOptionsList(newList)
-  }
-
-  const removeFromGraph = (id: string) => {
-    const newList: OptionType[] = optionsList.filter((x: OptionType) => x.id !== id)
-    setOptionsList(newList)
-  }
-
-  const addOption = () => {
-    const options = structuredClone(optionsList)
-    options.push({
-      id: crypto.randomUUID(),
-      position: 'long',
-      type: 'call',
-      strike: 0,
-      premium: 0,
-      contracts: 0,
-      time: Date.now(),
-      colour: darkMode ? '#ffffff' : '#000000',
-      data: []
-    })
-    setOptionsList(options)
-  }
+export default function OptionForm({optionsList, addOption, updateGraph, removeFromGraph, darkMode, toggleDarkMode}: OptionFormProp) {
 
   return (
     <div className="flex flex-col items-center h-screen w-1/3 overflow-auto border-black border-r-2">
@@ -61,8 +32,7 @@ export default function OptionForm({setOptions, darkMode, toggleDarkMode}: Optio
       .map(op => 
         <Option 
           key={op.id} 
-          id={op.id} 
-          time={op.time} 
+          currentOptionData={op}
           updateGraph={updateGraph} 
           removeFromGraph={removeFromGraph}
           darkMode={darkMode}
