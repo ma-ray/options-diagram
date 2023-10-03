@@ -1,14 +1,13 @@
-'use client'
+"use client"
 
-import ReactECharts from 'echarts-for-react';
+import ReactECharts from "echarts-for-react"
 
 type OptionChartProp = {
   resultList: number[][]
   darkMode: boolean
 }
 
-export default function OptionChart({resultList, darkMode}: OptionChartProp ) {
-
+export default function OptionChart({ resultList, darkMode }: OptionChartProp) {
   const option = {
     animation: false,
     grid: {
@@ -18,7 +17,7 @@ export default function OptionChart({resultList, darkMode}: OptionChartProp ) {
       bottom: 50
     },
     xAxis: {
-      name: 'x',
+      name: "x",
       min: 0,
       max: 1000,
       minorTick: {
@@ -29,7 +28,7 @@ export default function OptionChart({resultList, darkMode}: OptionChartProp ) {
       }
     },
     yAxis: {
-      name: 'y',
+      name: "y",
       min: -1000,
       max: 1000,
       minorTick: {
@@ -42,38 +41,38 @@ export default function OptionChart({resultList, darkMode}: OptionChartProp ) {
     dataZoom: [
       {
         show: true,
-        type: 'inside',
-        filterMode: 'none',
+        type: "inside",
+        filterMode: "none",
         xAxisIndex: [0],
         startValue: -100,
         endValue: 100
       },
       {
         show: true,
-        type: 'inside',
-        filterMode: 'none',
+        type: "inside",
+        filterMode: "none",
         yAxisIndex: [0],
         startValue: -100,
         endValue: 100
       }
     ],
     series: {
-      type: 'line',
+      type: "line",
       showSymbol: false,
       clip: true,
       data: resultList,
-      lineStyle: {color: darkMode ? '#ffffff' : '#000000'}
+      lineStyle: { color: darkMode ? "#ffffff" : "#000000" }
     }
   }
 
   return (
-    <ReactECharts 
+    <ReactECharts
       style={{
-        height: '100%',
-        width: '100%',
-      }} 
+        height: "100%",
+        width: "100%"
+      }}
       option={option}
-      theme={darkMode ? 'dark' : 'light'}
+      theme={darkMode ? "dark" : "light"}
     />
   )
 }
