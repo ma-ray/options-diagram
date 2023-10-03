@@ -14,7 +14,13 @@ const generateShortPut = (x: number, premium: number, strike: number) => {
   return Math.min(x - strike, 0) + premium
 }
 
-export function generateData(position: string, type: string, strike: number, premium: number, contracts: number) {
+export function generateData(
+  position: string,
+  type: string,
+  strike: number,
+  premium: number,
+  contracts: number
+) {
   let func
   if (position === "long") {
     if (type === "call") {
@@ -39,18 +45,18 @@ export function generateData(position: string, type: string, strike: number, pre
   return data
 }
 
-export function generateResult(dataLists: number[][]){
+export function generateResult(dataLists: number[][]) {
   console.log(dataLists)
   const numLists = dataLists.length
-  const result = [];
+  const result = []
 
   let idx = 0
   for (let i = 0; i < 1000; i += 0.1) {
-    let sum = 0;
+    let sum = 0
     for (let j = 0; j < numLists; j++) {
-      sum += dataLists[j][idx];
+      sum += dataLists[j][idx]
     }
-    result.push([i, sum]);
+    result.push([i, sum])
     idx++
   }
   return result
