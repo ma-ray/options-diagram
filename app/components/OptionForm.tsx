@@ -49,7 +49,6 @@ export default function OptionForm({
             currentOptionData={op}
             updateGraph={updateGraph}
             removeFromGraph={removeFromGraph}
-            darkMode={darkMode}
           />
         ))}
     </div>

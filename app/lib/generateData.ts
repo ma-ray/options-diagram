@@ -48,7 +48,6 @@ export function generateData(
 }
 
 export function generateResult(dataLists: number[][]) {
-  console.log(dataLists)
   const numLists = dataLists.length
   const result = []
 

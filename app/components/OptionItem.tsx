@@ -8,14 +8,12 @@ type OptionProp = {
   currentOptionData: Option
   updateGraph: (option: Option) => void
   removeFromGraph: (id: string) => void
-  darkMode: boolean
 }
 
 export default function OptionItem({
   currentOptionData,
   updateGraph,
-  removeFromGraph,
-  darkMode
+  removeFromGraph
 }: OptionProp) {
   const handleChange = (
     e: ChangeEvent<HTMLSelectElement | HTMLInputElement>
