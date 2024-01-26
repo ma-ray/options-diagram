@@ -2,7 +2,7 @@
 
 import OptionChart from "./OptionChart"
 import { useState } from "react"
-import { Option } from "./option"
+import { Option, OptionType, Position } from "./option"
 import OptionForm from "./OptionForm"
 import { generateResult } from "./generateData"
 
@@ -29,8 +29,8 @@ export default function Home() {
     const options = structuredClone(optionsList)
     options.push({
       id: crypto.randomUUID(),
-      position: "long",
-      type: "call",
+      position: Position.Long,
+      type: OptionType.Call,
       strike: 0,
       premium: 0,
       contracts: 0,

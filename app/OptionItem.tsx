@@ -1,7 +1,7 @@
 "use client"
 
 import { ChangeEvent } from "react"
-import { Option } from "./option"
+import { Option, OptionType, Position } from "./option"
 import { generateData } from "./generateData"
 
 type OptionProp = {
@@ -24,10 +24,10 @@ export default function OptionItem({
 
     switch (e.target.name) {
       case "position":
-        newData.position = e.target.value
+        newData.position = e.target.value as Position
         break
       case "type":
-        newData.type = e.target.value
+        newData.type = e.target.value as OptionType
         break
       case "strikePrice":
         newData.strike = e.target.value ? parseInt(e.target.value) : 0
@@ -55,12 +55,12 @@ export default function OptionItem({
   return (
     <div className="w-full flex justify-between items-center p-3 bg-white border-b-2 border-black">
       <select name="position" onChange={handleChange}>
-        <option value="long">Long</option>
-        <option value="short">Short</option>
+        <option value={Position.Long}>Long</option>
+        <option value={Position.Short}>Short</option>
       </select>
       <select name="type" onChange={handleChange}>
-        <option value="call">Call</option>
-        <option value="put">Put</option>
+        <option value={OptionType.Call}>Call</option>
+        <option value={OptionType.Put}>Put</option>
       </select>
       <div>
         <label>Strike Price: </label>

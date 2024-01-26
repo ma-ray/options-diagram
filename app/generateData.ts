@@ -1,3 +1,5 @@
+import { OptionType, Position } from "./option"
+
 const generateLongCall = (x: number, premium: number, strike: number) => {
   return Math.max(x - strike, 0) - premium
 }
@@ -15,21 +17,21 @@ const generateShortPut = (x: number, premium: number, strike: number) => {
 }
 
 export function generateData(
-  position: string,
-  type: string,
+  position: Position,
+  type: OptionType,
   strike: number,
   premium: number,
   contracts: number
 ) {
   let func
-  if (position === "long") {
-    if (type === "call") {
+  if (position === Position.Long) {
+    if (type === OptionType.Call) {
       func = generateLongCall
     } else {
       func = generateLongPut
     }
   } else {
-    if (type === "call") {
+    if (type === OptionType.Call) {
       func = generateShortCall
     } else {
       func = generateShortPut
