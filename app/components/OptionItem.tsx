@@ -2,7 +2,7 @@
 
 import { ChangeEvent } from "react"
 import { Option, OptionType, Position } from "../lib/option"
-import { generateData } from "../lib/generateData"
+import { calculateOption } from "../lib/generateData"
 
 type OptionProp = {
   currentOptionData: Option
@@ -39,13 +39,7 @@ export default function OptionItem({
     }
 
     if (e.target.name !== "color") {
-      newData.data = generateData(
-        newData.position,
-        newData.type,
-        newData.strike,
-        newData.premium,
-        newData.contracts
-      )
+      newData.data = calculateOption(newData)
     }
     updateGraph(newData)
   }

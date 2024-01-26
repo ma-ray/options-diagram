@@ -4,7 +4,7 @@ import { useState } from "react"
 import { Option, OptionType, Position } from "./lib/option"
 import OptionForm from "./components/OptionForm"
 import OptionChart from "./components/OptionChart"
-import { generateResult } from "./lib/generateData"
+import { calculateResult } from "./lib/generateData"
 
 export default function Home() {
   const [optionsList, setOptionsList] = useState<Option[]>([])
@@ -52,7 +52,7 @@ export default function Home() {
       />
       <div className="bg-white flex-1 h-screen">
         <OptionChart
-          resultList={generateResult(optionsList.map((op) => op.data))}
+          resultList={calculateResult(optionsList.map((op) => op.data))}
           darkMode={darkMode}
         />
       </div>
