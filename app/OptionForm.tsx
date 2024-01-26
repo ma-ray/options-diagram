@@ -1,7 +1,7 @@
 "use client"
 
 import { OptionType } from "./OptionType"
-import Option from "./Option"
+import OptionItem from "./OptionItem"
 
 type OptionFormProp = {
   optionsList: OptionType[]
@@ -44,7 +44,7 @@ export default function OptionForm({
       {optionsList
         .sort((a, b) => (a.time < b.time ? 1 : -1))
         .map((op) => (
-          <Option
+          <OptionItem
             key={op.id}
             currentOptionData={op}
             updateGraph={updateGraph}

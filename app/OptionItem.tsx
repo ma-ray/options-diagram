@@ -11,7 +11,7 @@ type OptionProp = {
   darkMode: boolean
 }
 
-export default function Option({
+export default function OptionItem({
   currentOptionData,
   updateGraph,
   removeFromGraph,
