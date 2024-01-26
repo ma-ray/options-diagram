@@ -2,7 +2,7 @@
 
 import { ChangeEvent } from "react"
 import { Option, OptionType, Position } from "../lib/option"
-import { calculateOption } from "../lib/generateData"
+import { calculateOption } from "../lib/generate-data"
 
 type OptionProp = {
   currentOptionData: Option
