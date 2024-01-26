@@ -1,12 +1,12 @@
 "use client"
 
-import { OptionType } from "./OptionType"
+import { Option } from "./option"
 import OptionItem from "./OptionItem"
 
 type OptionFormProp = {
-  optionsList: OptionType[]
+  optionsList: Option[]
   addOption: () => void
-  updateGraph: (option: OptionType) => void
+  updateGraph: (option: Option) => void
   removeFromGraph: (id: string) => void
   darkMode: boolean
   toggleDarkMode: () => void

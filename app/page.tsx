@@ -2,19 +2,19 @@
 
 import OptionChart from "./OptionChart"
 import { useState } from "react"
-import { OptionType } from "./OptionType"
+import { Option } from "./option"
 import OptionForm from "./OptionForm"
 import { generateResult } from "./generateData"
 
 export default function Home() {
-  const [optionsList, setOptionsList] = useState<OptionType[]>([])
+  const [optionsList, setOptionsList] = useState<Option[]>([])
   const [darkMode, setDarkMode] = useState(true)
 
   const toggleDarkMode = () => {
     setDarkMode(!darkMode)
   }
 
-  const updateGraph = (option: OptionType) => {
+  const updateGraph = (option: Option) => {
     const newList = optionsList.filter((x) => x.id !== option.id)
     newList.push(option)
     setOptionsList(newList)

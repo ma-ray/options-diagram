@@ -1,4 +1,4 @@
-export type OptionType = {
+export type Option = {
   id: string
   position: string
   type: string

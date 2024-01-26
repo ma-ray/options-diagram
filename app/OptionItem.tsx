@@ -1,12 +1,12 @@
 "use client"
 
 import { ChangeEvent } from "react"
-import { OptionType } from "./OptionType"
+import { Option } from "./option"
 import { generateData } from "./generateData"
 
 type OptionProp = {
-  currentOptionData: OptionType
-  updateGraph: (option: OptionType) => void
+  currentOptionData: Option
+  updateGraph: (option: Option) => void
   removeFromGraph: (id: string) => void
   darkMode: boolean
 }
