@@ -1,8 +1,8 @@
 "use client"
 
 import { ChangeEvent } from "react"
-import { Option, OptionType, Position } from "./option"
-import { generateData } from "./generateData"
+import { Option, OptionType, Position } from "./lib/option"
+import { generateData } from "./lib/generateData"
 
 type OptionProp = {
   currentOptionData: Option

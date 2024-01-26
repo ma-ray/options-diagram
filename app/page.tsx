@@ -2,9 +2,9 @@
 
 import OptionChart from "./OptionChart"
 import { useState } from "react"
-import { Option, OptionType, Position } from "./option"
+import { Option, OptionType, Position } from "./lib/option"
 import OptionForm from "./OptionForm"
-import { generateResult } from "./generateData"
+import { generateResult } from "./lib/generateData"
 
 export default function Home() {
   const [optionsList, setOptionsList] = useState<Option[]>([])

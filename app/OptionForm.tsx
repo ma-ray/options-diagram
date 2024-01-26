@@ -1,6 +1,6 @@
 "use client"
 
-import { Option } from "./option"
+import { Option } from "./lib/option"
 import OptionItem from "./OptionItem"
 
 type OptionFormProp = {
