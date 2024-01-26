@@ -1,9 +1,9 @@
 "use client"
 
-import OptionChart from "./OptionChart"
 import { useState } from "react"
 import { Option, OptionType, Position } from "./lib/option"
-import OptionForm from "./OptionForm"
+import OptionForm from "./components/OptionForm"
+import OptionChart from "./components/OptionChart"
 import { generateResult } from "./lib/generateData"
 
 export default function Home() {
