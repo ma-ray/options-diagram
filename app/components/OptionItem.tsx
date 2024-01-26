@@ -1,21 +1,19 @@
 "use client"
 
 import { ChangeEvent } from "react"
-import { OptionType } from "./OptionType"
-import { generateData } from "./generateData"
+import { Option, OptionType, Position } from "../lib/option"
+import { calculateOption } from "../lib/generate-data"
 
 type OptionProp = {
-  currentOptionData: OptionType
-  updateGraph: (option: OptionType) => void
+  currentOptionData: Option
+  updateGraph: (option: Option) => void
   removeFromGraph: (id: string) => void
-  darkMode: boolean
 }
 
-export default function Option({
+export default function OptionItem({
   currentOptionData,
   updateGraph,
-  removeFromGraph,
-  darkMode
+  removeFromGraph
 }: OptionProp) {
   const handleChange = (
     e: ChangeEvent<HTMLSelectElement | HTMLInputElement>
@@ -24,10 +22,10 @@ export default function Option({
 
     switch (e.target.name) {
       case "position":
-        newData.position = e.target.value
+        newData.position = e.target.value as Position
         break
       case "type":
-        newData.type = e.target.value
+        newData.type = e.target.value as OptionType
         break
       case "strikePrice":
         newData.strike = e.target.value ? parseInt(e.target.value) : 0
@@ -41,13 +39,7 @@ export default function Option({
     }
 
     if (e.target.name !== "color") {
-      newData.data = generateData(
-        newData.position,
-        newData.type,
-        newData.strike,
-        newData.premium,
-        newData.contracts
-      )
+      newData.data = calculateOption(newData)
     }
     updateGraph(newData)
   }
@@ -55,12 +47,12 @@ export default function Option({
   return (
     <div className="w-full flex justify-between items-center p-3 bg-white border-b-2 border-black">
       <select name="position" onChange={handleChange}>
-        <option value="long">Long</option>
-        <option value="short">Short</option>
+        <option value={Position.Long}>Long</option>
+        <option value={Position.Short}>Short</option>
       </select>
       <select name="type" onChange={handleChange}>
-        <option value="call">Call</option>
-        <option value="put">Put</option>
+        <option value={OptionType.Call}>Call</option>
+        <option value={OptionType.Put}>Put</option>
       </select>
       <div>
         <label>Strike Price: </label>

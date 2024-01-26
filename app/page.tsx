@@ -1,20 +1,20 @@
 "use client"
 
-import OptionChart from "./OptionChart"
 import { useState } from "react"
-import { OptionType } from "./OptionType"
-import OptionForm from "./OptionForm"
-import { generateResult } from "./generateData"
+import { Option, OptionType, Position } from "./lib/option"
+import OptionForm from "./components/OptionForm"
+import OptionChart from "./components/OptionChart"
+import { calculateResult } from "./lib/generate-data"
 
 export default function Home() {
-  const [optionsList, setOptionsList] = useState<OptionType[]>([])
+  const [optionsList, setOptionsList] = useState<Option[]>([])
   const [darkMode, setDarkMode] = useState(true)
 
   const toggleDarkMode = () => {
     setDarkMode(!darkMode)
   }
 
-  const updateGraph = (option: OptionType) => {
+  const updateGraph = (option: Option) => {
     const newList = optionsList.filter((x) => x.id !== option.id)
     newList.push(option)
     setOptionsList(newList)
@@ -29,8 +29,8 @@ export default function Home() {
     const options = structuredClone(optionsList)
     options.push({
       id: crypto.randomUUID(),
-      position: "long",
-      type: "call",
+      position: Position.Long,
+      type: OptionType.Call,
       strike: 0,
       premium: 0,
       contracts: 0,
@@ -52,7 +52,7 @@ export default function Home() {
       />
       <div className="bg-white flex-1 h-screen">
         <OptionChart
-          resultList={generateResult(optionsList.map((op) => op.data))}
+          resultList={calculateResult(optionsList.map((op) => op.data))}
           darkMode={darkMode}
         />
       </div>

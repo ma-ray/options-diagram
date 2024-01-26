@@ -1,12 +1,12 @@
 "use client"
 
-import { OptionType } from "./OptionType"
-import Option from "./Option"
+import { Option } from "../lib/option"
+import OptionItem from "./OptionItem"
 
 type OptionFormProp = {
-  optionsList: OptionType[]
+  optionsList: Option[]
   addOption: () => void
-  updateGraph: (option: OptionType) => void
+  updateGraph: (option: Option) => void
   removeFromGraph: (id: string) => void
   darkMode: boolean
   toggleDarkMode: () => void
@@ -44,12 +44,11 @@ export default function OptionForm({
       {optionsList
         .sort((a, b) => (a.time < b.time ? 1 : -1))
         .map((op) => (
-          <Option
+          <OptionItem
             key={op.id}
             currentOptionData={op}
             updateGraph={updateGraph}
             removeFromGraph={removeFromGraph}
-            darkMode={darkMode}
           />
         ))}
     </div>
