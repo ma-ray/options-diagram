@@ -2,7 +2,7 @@
 
 This website lets you create payoff charts for a portfolio of options.
 
-## [Check it out here!](https://github.com/ma-ray/options-diagram)
+### [Check it out here!](https://options-diagram.vercel.app/)
 
 ## Credits
 
